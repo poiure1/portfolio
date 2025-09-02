@@ -1,0 +1,238 @@
+{
+  "personal": {
+    "name": "Nattawadee Wuttivoradit",
+    "title": "Full Stack Developer",
+    "bio": "I build beautiful, functional, and user-centered digital experiences.",
+    "email": "nattwadee.wutt@gmail.com",
+    "github": "https://github.com/poiure1",
+    "linkedin": "https://linkedin.com/in/nattawadee-wuttivoradit",
+    "resumeUrl": "/assets/Nattawadee_Wuttivoradit_Public_Resume.pdf",
+    "initials": "NW",
+    "profileImage": "/assets/images/profile.jpg",
+    "location": "Bangkok, Thailand"
+  },
+  "navigation": {
+    "brand": "Poiure",
+    "links": [
+      { "path": "/", "label": "Home" },
+      { "path": "/about", "label": "About" },
+      { "path": "/projects", "label": "Projects" },
+      { "path": "/contact", "label": "Contact" }
+    ]
+  },
+  "socialLinks": [
+    {
+      "platform": "github",
+      "label": "GitHub",
+      "href": "https://github.com/poiure1",
+      "icon": "Github"
+    },
+    {
+      "platform": "linkedin",
+      "label": "LinkedIn", 
+      "href": "https://linkedin.com/in/nattawadee-wuttivoradit",
+      "icon": "Linkedin"
+    },
+    {
+      "platform": "email",
+      "label": "Email",
+      "href": "mailto:nattwadee.wutt@gmail.com",
+      "icon": "Mail"
+    }
+  ],
+  "sections": {
+    "hero": {
+      "title": "Building Amazing Web Experiences",
+      "subtitle": "Full Stack Developer passionate about creating innovative solutions",
+      "description": "I create modern, responsive web applications using cutting-edge technologies. Let's build something amazing together."
+    },
+    "features": {
+      "title": "What I Do",
+      "subtitle": "I focus on creating exceptional digital experiences through thoughtful design and robust development.",
+      "items": [
+        {
+          "icon": "Code",
+          "title": "Clean Code",
+          "description": "Writing maintainable and scalable code following best practices"
+        },
+        {
+          "icon": "Palette",
+          "title": "Modern Design",
+          "description": "Creating beautiful and intuitive user interfaces"
+        },
+        {
+          "icon": "Smartphone",
+          "title": "Responsive",
+          "description": "Building applications that work perfectly on all devices"
+        }
+      ]
+    },
+    "technologies": {
+      "title": "Technologies I Work With"
+    },
+    "cta": {
+      "title": "Let's Build Something Amazing Together",
+      "subtitle": "I'm always open to discussing new opportunities and interesting projects.",
+      "buttonText": "Get In Touch"
+    }
+  },
+  "technologies": [
+    "React",
+    "Vue.js",
+    "Flutter",
+    "Node.js", 
+    "Tailwind CSS",
+    "TypeScript",
+    "Python",
+    "MongoDB",
+    "PostgreSQL",
+    "MySQL",
+    "InfluxDB",
+    "MinIO",
+    "Express",
+    "Firebase",
+    "Prisma",
+    "FastAPI"
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Nongpanya",
+      "description": "A smart medicine dispensing system integrated with a web platform. It automatically selects and dispenses appropriate medication based on user symptoms, using a mapped database of symptoms and treatments.",
+      "image": "/assets/images/nongpanya_1.png",
+      "tags": ["React", "Chart.js", "TypeScript", "Node.js", "JavaScript", "Express", "MySQL", "Prisma", "WebSocket", "NginX", "Docker"],
+      "categories": ["Frontend", "Backend", "Database", "DevOps"],
+      "github": "https://github.com/lnwwaveza007/nongpanya",
+      "demo": "https://nongpanya.sit.kmutt.ac.th/"
+    },
+    {
+      "id": 2,
+      "title": "CampusLink",
+      "description": "A comprehensive university management platform designed to support academic and administrative operations across departments.",
+      "image": "/assets/images/campuslink_1.png",
+      "tags": ["React", "TypeScript", "Node.js", "JavaScript", "Express", "PostgreSQL", "Prisma", "MinIO"],
+      "categories": ["Backend", "Database"],
+      "github": "https://github.com/KMUTT-CampusLink",
+      "demo": ""
+    },
+    {
+      "id": 3,
+      "title": "AllyCall",
+      "description": "A mobile safety app that allows users to make fake calls, view high-risk locations, and access personal legal rights information for protection and awareness.",
+      "image": "/assets/images/allycall_1.png",
+      "tags": ["Flutter", "Dart", "Node.js", "Express", "JavaScript", "PostgreSQL", "Prisma", "MinIO"],
+      "categories": ["Frontend", "Backend", "DevOps"],
+      "github": "https://github.com/Integrated-AllyCall",
+      "demo": ""
+    },
+    {
+      "id": 4,
+      "title": "Redine",
+      "description": "A mobile app that helps users create new recipes from leftover ingredients, promoting sustainability and reducing food waste.",
+      "image": "/assets/images/redine_1.png",
+      "tags": ["Flutter", "Dart", "Hono", "Bun", "TypeScript", "Firebase"],
+      "categories": ["Frontend", "Backend"],
+      "github": "https://github.com/ReDine-Flutter-Project-G4",
+      "demo": "https://www.figma.com/proto/itNAT7EqZs7eITUotkkRkK/Redine-UI?page-id=131%3A2736&node-id=134-3319&viewport=183%2C-768%2C0.46&t=CnLMeiQxjAoQpYyJ-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=136%3A3269&show-proto-sidebar=1"
+    },
+    {
+      "id": 5,
+      "title": "CS First Date 2024",
+      "description": "A project for the annual freshman orientation event for computer science students, focused on engagement and event coordination.",
+      "image": "/assets/images/csfd_1.png",
+      "tags": ["React", "Vue.js", "Tailwind CSS", "Node.js", "Express", "JavaScript", "PostgreSQL"],
+      "categories": ["Design"],
+      "github": "https://github.com/KMUTT-CSFD-2024",
+      "demo": "https://www.figma.com/proto/p4tDdZPjyxlTPqzq0mpSUN/CSFD-UXUI?page-id=753%3A18026&node-id=908-19231&viewport=-717%2C5464%2C0.27&t=HqHK2OyvGuT7GlHD-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=908%3A19231&show-proto-sidebar=1"
+    },
+    {
+      "id": 6,
+      "title": "IT3K #19",
+      "description": "A real-time scoreboard system for IT3K sports events, enabling live match tracking and score updates during competitions.",
+      "image": "/assets/images/it3k_1.png",
+      "tags": ["Next.js", "TypeScript", "NX", "MySQL", "WebSocket"],
+      "categories": ["Backend"],
+      "github": "https://github.com/SAMOSIT-Dev/it3k-2025-client",
+      "demo": ""
+    }
+  ],
+  "about": {
+    "intro": "I'm a curious and driven developer who enjoys building real-world solutions through code. I love working across the stack, solving technical challenges, and turning ideas into practical, user-focused applications.",
+    "description": "When I’m not coding, I enjoy staying active through exercise and unwinding with a good comic book.",
+    "skills": [
+      { 
+        "category": "Frontend", 
+        "items": ["React", "Vue.js", "Next.js", "TypeScript", "Flutter"] 
+      },
+      { 
+        "category": "Backend", 
+        "items": ["Node.js", "Express", "Python", "JavaScript", "TypeScript", "FastAPI"] 
+      },
+      { 
+        "category": "Database", 
+        "items": ["PostgreSQL", "MySQL", "MongoDB", "InfluxDB", "MinIO", "Firebase"] 
+      },
+      { 
+        "category": "DevOps & Cloud", 
+        "items": ["Docker", "AWS", "Firebase", "Nginx", "Cron"] 
+      },
+      { 
+        "category": "Tools", 
+        "items": ["Git", "VSCode", "Postman", "DataGrip", "Figma", "MQTTx"] 
+      }
+    ],
+    "timeline": [
+      {
+        "year": "2025",
+        "title": "IoT Engineer Intern",
+        "company": "TCC Technology",
+        "description": "Developed full-stack IoT web applications using modern technologies including Next.js, FastAPI, Flask, MQTT, InfluxDB, and MongoDB, worked on front-end dashboards, back-end APIs, and real-time data pipelines."
+      },
+      {
+        "year": "2024 - 2025",
+        "title": "Head of Backend Speaker",
+        "company": "SIT Hello World 2025 – SIT, KMUTT",
+        "description": "Led backend development sessions in a 5-day crash course for freshmen, covering Git/GitHub, JavaScript, Node.js, Express.js, data management, SQL, and deployment."
+      },
+      {
+        "year": "2024",
+        "title": "Java Programming Mentor",
+        "company": "Java Programming Classes – CS@SIT, KMUTT",
+        "description": "Mentored students in Java programming mentoring sessions, teaching core concepts and coding techniques"
+      },
+      {
+        "year": "2024",
+        "title": "Hackathon Project Manager",
+        "company": "Mental Health Hackathon 2024 – KMUTT",
+        "description": "Developed and implemented project timelines, task assignments, and resource management to achieve project objectives, focusing on creating innovations to address, prevent, and raise awareness about mental health issues"
+      }
+    ]
+  },
+  "contactInfo": [
+    {
+      "icon": "Mail",
+      "label": "Email",
+      "value": "nattwadee.wutt@gmail.com",
+      "href": "mailto:nattwadee.wutt@gmail.com"
+    },
+    {
+      "icon": "Linkedin",
+      "label": "LinkedIn",
+      "value": "linkedin.com/in/nattawadee-wuttivoradit",
+      "href": "https://linkedin.com/in/nattawadee-wuttivoradit"
+    },
+    {
+      "icon": "MapPin",
+      "label": "Location",
+      "value": "Bangkok, Thailand",
+      "href": "https://maps.google.com/?q=Bangkok,Thailand"
+    }
+  ],
+  "contact": {
+    "title": "Get In Touch",
+    "description": "I'm always open to discussing new opportunities and interesting projects.",
+    "email": "nattwadee.wutt@gmail.com",
+    "linkedin": "https://linkedin.com/in/nattawadee-wuttivoradit",
+    "location": "Bangkok, Thailand"
+  }
+}

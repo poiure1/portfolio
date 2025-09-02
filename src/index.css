@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #fef9e7;
+  --color-primary-100: #fef3c7;
+  --color-primary-200: #fde68a;
+  --color-primary-300: #f1dd6f;
+  --color-primary-400: #ddab4a;
+  --color-primary-500: #9f703d;
+  --color-primary-600: #8b5a2b;
+  --color-primary-700: #744623;
+  --color-primary-800: #5d3621;
+  --color-primary-900: #36301f;
+  --color-accent: #b7bdbe;
+}
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Keyframe animations */
+@keyframes slideInFromLeft {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* Animation classes */
+.animate-slideInFromLeft {
+  animation: slideInFromLeft 0.5s ease-out forwards;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global spacing improvements */
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Container and layout spacing */
+.container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Section spacing */
+section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* Card and component spacing */
+.card {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 3rem;
+    margin-bottom: 3rem;
+  }
+}
+
+/* Button spacing */
+button, .btn {
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  button, .btn {
+    padding: 1rem 2rem;
+    margin: 0.75rem;
+  }
+}
+
+/* Form elements spacing */
+input, textarea, select {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  input, textarea, select {
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Navigation spacing */
+nav {
+  padding: 1rem 2rem;
+}
+
+@media (min-width: 768px) {
+  nav {
+    padding: 1.5rem 3rem;
+  }
+}
+
+/* Footer spacing */
+footer {
+  padding: 3rem 2rem;
+}
+
+@media (min-width: 768px) {
+  footer {
+    padding: 4rem 3rem;
+  }
+}
+
+/* Text spacing improvements */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+}
+
+h1 { margin-bottom: 2rem; }
+h2 { margin-bottom: 1.75rem; }
+
+p {
+  margin-bottom: 1.25rem;
+}
+
+ul, ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Grid and flex spacing */
+.grid-cols-1, .grid-cols-2, .grid-cols-3 {
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid-cols-1, .grid-cols-2, .grid-cols-3 {
+    gap: 3rem;
+  }
+}
+
+.flex {
+  gap: 1rem;
+}
+
+.flex-wrap {
+  gap: 1.5rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-500);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-400);
+}
+
+/* Custom selection */
+::selection {
+  background: var(--color-primary-500);
+  color: white;
+}
+
+/* Additional spacing utilities */
+.spacing-xs { padding: 0.5rem; margin: 0.25rem; }
+.spacing-sm { padding: 1rem; margin: 0.5rem; }
+.spacing-md { padding: 1.5rem; margin: 0.75rem; }
+.spacing-lg { padding: 2rem; margin: 1rem; }
+.spacing-xl { padding: 3rem; margin: 1.5rem; }
+.spacing-2xl { padding: 4rem; margin: 2rem; }
+
+/* Padding only utilities */
+.p-xs { padding: 0.5rem; }
+.p-sm { padding: 1rem; }
+.p-md { padding: 1.5rem; }
+.p-lg { padding: 2rem; }
+.p-xl { padding: 3rem; }
+.p-2xl { padding: 4rem; }
+
+/* Margin only utilities */
+.m-xs { margin: 0.25rem; }
+.m-sm { margin: 0.5rem; }
+.m-md { margin: 0.75rem; }
+.m-lg { margin: 1rem; }
+.m-xl { margin: 1.5rem; }
+.m-2xl { margin: 2rem; }
+
+/* Vertical spacing */
+.py-xs { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-sm { padding-top: 1rem; padding-bottom: 1rem; }
+.py-md { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.py-lg { padding-top: 2rem; padding-bottom: 2rem; }
+.py-xl { padding-top: 3rem; padding-bottom: 3rem; }
+.py-2xl { padding-top: 4rem; padding-bottom: 4rem; }
+
+.my-xs { margin-top: 0.25rem; margin-bottom: 0.25rem; }
+.my-sm { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+.my-md { margin-top: 0.75rem; margin-bottom: 0.75rem; }
+.my-lg { margin-top: 1rem; margin-bottom: 1rem; }
+.my-xl { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+.my-2xl { margin-top: 2rem; margin-bottom: 2rem; }
+
+/* Horizontal spacing */
+.px-xs { padding-left: 0.5rem; padding-right: 0.5rem; }
+.px-sm { padding-left: 1rem; padding-right: 1rem; }
+.px-md { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-lg { padding-left: 2rem; padding-right: 2rem; }
+.px-xl { padding-left: 3rem; padding-right: 3rem; }
+.px-2xl { padding-left: 4rem; padding-right: 4rem; }
+
+.mx-xs { margin-left: 0.25rem; margin-right: 0.25rem; }
+.mx-sm { margin-left: 0.5rem; margin-right: 0.5rem; }
+.mx-md { margin-left: 0.75rem; margin-right: 0.75rem; }
+.mx-lg { margin-left: 1rem; margin-right: 1rem; }
+.mx-xl { margin-left: 1.5rem; margin-right: 1.5rem; }
+.mx-2xl { margin-left: 2rem; margin-right: 2rem; }
+
+/* Content spacing for better readability */
+.content-spacing > * + * {
+  margin-top: 1.5rem;
+}
+
+.content-spacing-lg > * + * {
+  margin-top: 2rem;
+}
+
+.content-spacing-xl > * + * {
+  margin-top: 3rem;
+}
+
+/* Responsive spacing helpers */
+@media (min-width: 768px) {
+  .md\:spacing-lg { padding: 2rem; margin: 1rem; }
+  .md\:spacing-xl { padding: 3rem; margin: 1.5rem; }
+  .md\:spacing-2xl { padding: 4rem; margin: 2rem; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:spacing-xl { padding: 3rem; margin: 1.5rem; }
+  .lg\:spacing-2xl { padding: 4rem; margin: 2rem; }
+  .lg\:spacing-3xl { padding: 5rem; margin: 2.5rem; }
+}
