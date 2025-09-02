@@ -199,7 +199,7 @@ const ProjectDetail = () => {
               .map((relatedProject) => (
                 <Link
                   key={relatedProject.id}
-                  to={`/projects/${relatedProject.id}`}
+                  to={`/portfolio/projects/${relatedProject.id}`}
                   className="group bg-white rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 overflow-hidden"
                 >
                   <div className="relative overflow-hidden aspect-[4/3]">
