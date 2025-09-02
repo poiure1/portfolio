@@ -30,7 +30,7 @@ const Home = () => {
               
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-6">
-                <Button to="/projects" variant="primary" size="md">
+                <Button to="/portfolio/projects" variant="primary" size="md">
                   View My Work <ArrowRight className="w-5 h-5" />
                 </Button>
                 <Button 
@@ -155,7 +155,7 @@ const Home = () => {
             {sections.cta.subtitle}
           </p>
           <Button 
-            to="/contact" 
+            to="/portfolio/contact" 
             variant="white" 
             size="xl"
           >

@@ -215,7 +215,7 @@ const Projects = () => {
             I'm always excited to take on new challenges and collaborate on interesting projects.
           </p>
           <Button 
-            to="/contact" 
+            to="/portfolio/contact" 
             variant="primary" 
             size="md"
           >
