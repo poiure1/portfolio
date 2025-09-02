@@ -5,6 +5,7 @@ import portfolioData from '../data/portfolioData.json'
 import { getIcon } from '../utils/iconUtils'
 import Button from '../components/Button'
 import { emailConfig } from '../config/emailConfig'
+import AnimatedSection from '../components/AnimatedSection'
 
 const Contact = () => {
   const { contact, socialLinks } = portfolioData
@@ -69,18 +70,18 @@ const Contact = () => {
       {/* Header Section */}
       <section className="py-16 md:py-24 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-          <div className="text-center mb-16">
+          <AnimatedSection animation="fadeInUp" className="text-center mb-16">
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               {contact.title}
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               {contact.description}
             </p>
-          </div>
+          </AnimatedSection>
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
             {/* Contact Form */}
-            <div className="order-2 lg:order-1">
+            <AnimatedSection animation="fadeInLeft" delay={200} className="order-2 lg:order-1">
               <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
                 <h2 className="text-2xl font-semibold text-gray-900 mb-6">
                   Send me a message
@@ -173,10 +174,10 @@ const Contact = () => {
                   </Button>
                 </form>
               </div>
-            </div>
+            </AnimatedSection>
 
             {/* Contact Info */}
-            <div className="order-1 lg:order-2 space-y-8">
+            <AnimatedSection animation="fadeInRight" delay={400} className="order-1 lg:order-2 space-y-8">
               <div>
                 <h2 className="text-2xl font-semibold text-gray-900 mb-6">
                   Let's connect
@@ -189,22 +190,27 @@ const Contact = () => {
 
               {/* Contact Information */}
               <div className="space-y-4">
-                {socialLinks.map((item) => (
-                  <a
+                {socialLinks.map((item, index) => (
+                  <AnimatedSection
                     key={item.label}
-                    href={item.href}
-                    target={item.href.startsWith('http') ? '_blank' : undefined}
-                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300 group"
+                    animation="fadeInUp"
+                    delay={600 + index * 100}
                   >
-                    <div className="w-12 h-12 bg-primary-400 rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
-                      {getIcon(item.icon, "w-6 h-6")}
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-gray-500 leading-none">{item.label}</p>
-                      <p className="text-gray-900 font-medium leading-none -mt-1">{item.value}</p>
-                    </div>
-                  </a>
+                    <a
+                      href={item.href}
+                      target={item.href.startsWith('http') ? '_blank' : undefined}
+                      rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300 group"
+                    >
+                      <div className="w-12 h-12 bg-primary-400 rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                        {getIcon(item.icon, "w-6 h-6")}
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-500 leading-none">{item.label}</p>
+                        <p className="text-gray-900 font-medium leading-none -mt-1">{item.value || item.href.replace('mailto:', '').replace('https://', '')}</p>
+                      </div>
+                    </a>
+                  </AnimatedSection>
                 ))}
               </div>
 
@@ -218,7 +224,7 @@ const Contact = () => {
                   I'm currently available for freelance projects and full-time opportunities.
                 </p>
               </div> */}
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>

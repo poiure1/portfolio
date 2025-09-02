@@ -2,6 +2,7 @@ import React from 'react'
 import { Download, MapPin, Calendar, Award } from 'lucide-react'
 import portfolioData from '../data/portfolioData.json'
 import Button from '../components/Button'
+import AnimatedSection from '../components/AnimatedSection'
 
 const About = () => {
   const { about, personal } = portfolioData
@@ -12,50 +13,54 @@ const About = () => {
       <section className="py-16 md:py-24 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl lg:text-5xl font-bold text-gray-900">
-                About <span className="text-primary-500">Me</span>
-              </h1>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                {about.intro}
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                {about.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>{personal.location}</span>
+            <AnimatedSection animation="fadeInLeft">
+              <div className="space-y-6">
+                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900">
+                  About <span className="text-primary-500">Me</span>
+                </h1>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  {about.intro}
+                </p>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  {about.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    <span>{personal.location}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    <span>Available for freelance</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4" />
-                  <span>Available for freelance</span>
-                </div>
+                
+                <Button 
+                  href={personal.resumeUrl} 
+                  variant="primary" 
+                  size="md"
+                  download
+                >
+                  <Download className="w-5 h-5" /> Download Resume
+                </Button>
               </div>
-              
-              <Button 
-                href={personal.resumeUrl} 
-                variant="primary" 
-                size="md"
-                download
-              >
-                <Download className="w-5 h-5" /> Download Resume
-              </Button>
-            </div>
+            </AnimatedSection>
             
-            <div className="flex justify-center">
-              <div className="relative">
-                <img 
-                  src={personal.profileImage || "src/assets/images/profile.jpg"} 
-                  alt="Profile" 
-                  className="rounded-2xl shadow-2xl w-80 h-96 object-cover"
-                />
-                <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary-400 rounded-2xl flex items-center justify-center text-white shadow-xl">
-                  <Award className="w-8 h-8" />
+            <AnimatedSection animation="fadeInRight" delay={200}>
+              <div className="flex justify-center">
+                <div className="relative">
+                  <img 
+                    src={personal.profileImage || "src/assets/images/profile.jpg"} 
+                    alt="Profile" 
+                    className="rounded-2xl shadow-2xl w-80 h-96 object-cover"
+                  />
+                  <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary-400 rounded-2xl flex items-center justify-center text-white shadow-xl">
+                    <Award className="w-8 h-8" />
+                  </div>
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -63,21 +68,22 @@ const About = () => {
       {/* Skills Section */}
       <section className="py-20 md:py-28 lg:py-32 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-          <div className="text-center mb-16">
+          <AnimatedSection animation="fadeInUp" className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               Skills & Technologies
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Here are the technologies and tools I work with to bring ideas to life.
             </p>
-          </div>
+          </AnimatedSection>
           
           <div className="grid md:grid-cols-3 gap-8">
             {about.skills.map((skillSet, index) => (
-              <div 
-                key={skillSet.category} 
+              <AnimatedSection 
+                key={skillSet.category}
+                animation="scaleIn"
+                delay={index * 150}
                 className="bg-white rounded-2xl px-8 pb-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:border-primary-200"
-                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="text-center">
                   <h3 className="text-xl font-semibold text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
@@ -95,7 +101,7 @@ const About = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -104,18 +110,23 @@ const About = () => {
       {/* Experience Timeline */}
       <section className="py-20 md:py-28 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-          <div className="text-center mb-16">
+          <AnimatedSection animation="fadeInUp" className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               Experience
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               My journey in the world of development and the experiences that shaped me.
             </p>
-          </div>
+          </AnimatedSection>
           
           <div className="max-w-3xl mx-auto">
             {about.timeline.map((item, index) => (
-              <div key={index} className="relative pl-8 pb-12 last:pb-0">
+              <AnimatedSection
+                key={index}
+                animation="fadeInLeft"
+                delay={index * 200}
+                className="relative pl-8 pb-12 last:pb-0"
+              >
                 {/* Timeline line */}
                 {index !== about.timeline.length - 1 && (
                   <div className="absolute left-4 top-8 w-0.5 h-full bg-gray-200"></div>
@@ -137,7 +148,7 @@ const About = () => {
                   <p className="text-primary-600 font-medium mb-2">{item.company}</p>
                   <p className="text-gray-600">{item.description}</p>
                 </div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>

@@ -26,11 +26,17 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
+      transitionDuration: {
+        '600': '600ms',
+        '800': '800ms',
+        '1000': '1000ms',
+      },
       animation: {
         'fade-in-up': 'fadeInUp 0.6s ease-out',
         'fade-in': 'fadeIn 0.6s ease-out',
         'slide-in-left': 'slideInLeft 0.6s ease-out',
         'slide-in-right': 'slideInRight 0.6s ease-out',
+        'slideInFromLeft': 'slideInFromLeft 0.3s ease-out',
       },
       keyframes: {
         fadeInUp: {
@@ -68,6 +74,14 @@ export default {
           },
           '100%': {
             opacity: '1',
+            transform: 'translateX(0)',
+          },
+        },
+        slideInFromLeft: {
+          '0%': {
+            transform: 'translateX(-100%)',
+          },
+          '100%': {
             transform: 'translateX(0)',
           },
         },
