@@ -1,7 +1,7 @@
 import React from 'react'
 import { ArrowRight, Download, Code, Palette } from 'lucide-react'
 import portfolioData from '../data/portfolioData.json'
-import { getIcon, getIconComponent } from '../utils/iconUtils'
+import { getIcon } from '../utils/iconUtils'
 import Button from '../components/Button'
 
 const Home = () => {
@@ -81,43 +81,6 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 md:py-28 lg:py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
-          <div className="text-center mb-20">
-            <h3 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-6">
-              {sections.features.title}
-            </h3>
-            <p className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              {sections.features.subtitle}
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-10 lg:gap-12">
-            {sections.features.items.map((feature, index) => {
-              const IconComponent = getIconComponent(feature.icon);
-              return (
-                <div 
-                  key={feature.title}
-                  className="bg-white p-10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-center group border border-gray-100"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="w-20 h-20 bg-primary-400 rounded-2xl flex items-center justify-center mx-auto mb-8 text-white group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <IconComponent className="w-8 h-8" />
-                  </div>
-                  <h4 className="text-xl lg:text-2xl font-semibold text-gray-900 mb-6">
-                    {feature.title}
-                  </h4>
-                  <p className="text-gray-600 leading-relaxed text-lg">
-                    {feature.description}
-                  </p>
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>
