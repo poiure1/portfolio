@@ -46,7 +46,7 @@ const ProjectDetail = () => {
       <section className=" bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <Link 
-            to="/projects"
+            to="/portfolio/projects"
             className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-6 transition-colors duration-200"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
