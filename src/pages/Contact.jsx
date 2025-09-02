@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Send } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 import portfolioData from '../data/portfolioData.json'
 import { getIcon } from '../utils/iconUtils'
 import Button from '../components/Button'
+import { emailConfig } from '../config/emailConfig'
 
 const Contact = () => {
   const { contact, contactInfo, socialLinks } = portfolioData
@@ -27,12 +29,39 @@ const Contact = () => {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // EmailJS configuration
+      const { serviceID, templateID, publicKey } = emailConfig
+      
+      // Check if EmailJS is configured
+      if (!serviceID || !templateID || !publicKey) {
+        throw new Error('EmailJS is not configured. Please update your credentials in src/config/emailConfig.js')
+      }
+      
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        serviceID,
+        templateID,
+        {
+          name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          time: new Date().toISOString(),
+          to_email: 'nattwadee.wutt@gmail.com', // Your email
+        },
+        publicKey
+      )
+      
+      console.log('Email sent successfully:', result)
       alert('Thank you for your message! I\'ll get back to you soon.')
       setFormData({ name: '', email: '', subject: '', message: '' })
+    } catch (error) {
+      console.error('Failed to send email:', error)
+      alert('Sorry, there was an error sending your message. Please try again or contact me directly at nattwadee.wutt@gmail.com')
+    } finally {
       setIsSubmitting(false)
-    }, 1000)
+    }
   }
 
   return (
