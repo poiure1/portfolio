@@ -80,7 +80,7 @@ const Projects = () => {
             {filteredProjects.map((project, index) => (
               <Link
                 key={project.id}
-                to={`/projects/${project.id}`}
+                to={`/portfolio/projects/${project.id}`}
                 className="group bg-white rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 overflow-hidden block"
                 style={{ animationDelay: `${index * 100}ms` }}
               >

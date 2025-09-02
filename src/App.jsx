@@ -17,11 +17,11 @@ function App() {
         <Navbar />
         <main className="flex-1">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:id" element={<ProjectDetail />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/portfolio/" element={<Home />} />
+            <Route path="/portfolio/about" element={<About />} />
+            <Route path="/portfolio/projects" element={<Projects />} />
+            <Route path="/portfolio/projects/:id" element={<ProjectDetail />} />
+            <Route path="/portfolio/contact" element={<Contact />} />
           </Routes>
         </main>
         <Footer />

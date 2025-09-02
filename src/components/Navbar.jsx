@@ -44,7 +44,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Brand */}
           <Link 
-            to="/" 
+            to="/portfolio/" 
             onClick={handleLogoClick}
             className="text-2xl lg:text-3xl font-bold text-primary-500 hover:text-primary-400 transition-all duration-300 transform hover:scale-105"
           >
