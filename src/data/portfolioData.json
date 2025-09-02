@@ -24,20 +24,29 @@
     {
       "platform": "github",
       "label": "GitHub",
+      "value": "github.com/poiure1",
       "href": "https://github.com/poiure1",
       "icon": "Github"
     },
     {
       "platform": "linkedin",
       "label": "LinkedIn", 
+      "value": "linkedin.com/in/nattawadee-wuttivoradit",
       "href": "https://linkedin.com/in/nattawadee-wuttivoradit",
       "icon": "Linkedin"
     },
     {
       "platform": "email",
       "label": "Email",
+      "value": "nattwadee.wutt@gmail.com",
       "href": "mailto:nattwadee.wutt@gmail.com",
       "icon": "Mail"
+    },
+    {
+      "icon": "MapPin",
+      "label": "Location",
+      "value": "Bangkok, Thailand",
+      "href": "https://maps.google.com/?q=Bangkok,Thailand"
     }
   ],
   "sections": {
@@ -208,26 +217,6 @@
       }
     ]
   },
-  "contactInfo": [
-    {
-      "icon": "Mail",
-      "label": "Email",
-      "value": "nattwadee.wutt@gmail.com",
-      "href": "mailto:nattwadee.wutt@gmail.com"
-    },
-    {
-      "icon": "Linkedin",
-      "label": "LinkedIn",
-      "value": "linkedin.com/in/nattawadee-wuttivoradit",
-      "href": "https://linkedin.com/in/nattawadee-wuttivoradit"
-    },
-    {
-      "icon": "MapPin",
-      "label": "Location",
-      "value": "Bangkok, Thailand",
-      "href": "https://maps.google.com/?q=Bangkok,Thailand"
-    }
-  ],
   "contact": {
     "title": "Get In Touch",
     "description": "I'm always open to discussing new opportunities and interesting projects.",

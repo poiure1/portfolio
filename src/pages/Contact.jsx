@@ -7,7 +7,7 @@ import Button from '../components/Button'
 import { emailConfig } from '../config/emailConfig'
 
 const Contact = () => {
-  const { contact, contactInfo, socialLinks } = portfolioData
+  const { contact, socialLinks } = portfolioData
   
   const [formData, setFormData] = useState({
     name: '',
@@ -86,7 +86,7 @@ const Contact = () => {
                   Send me a message
                 </h2>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit}>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -189,7 +189,7 @@ const Contact = () => {
 
               {/* Contact Information */}
               <div className="space-y-4">
-                {contactInfo.map((item) => (
+                {socialLinks.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
@@ -206,27 +206,6 @@ const Contact = () => {
                     </div>
                   </a>
                 ))}
-              </div>
-
-              {/* Social Links */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  Follow me
-                </h3>
-                <div className="flex gap-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 transition-all duration-300 hover:scale-110 hover:text-primary-500`}
-                      aria-label={social.label}
-                    >
-                      {getIcon(social.icon, "w-6 h-6")}
-                    </a>
-                  ))}
-                </div>
               </div>
 
               {/* Availability Status

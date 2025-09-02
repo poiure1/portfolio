@@ -40,15 +40,20 @@ const Navbar = () => {
           : 'bg-white/90 backdrop-blur-sm'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-2 md:px-8 lg:px-12">
+      <div className="max-w-10xl mx-auto px-2 md:px-8 lg:px-12">
         <div className="flex items-center justify-between">
           {/* Brand */}
           <Link 
             to="/portfolio/" 
             onClick={handleLogoClick}
-            className="text-2xl lg:text-3xl font-bold text-primary-500 hover:text-primary-400 transition-all duration-300 transform hover:scale-105"
+            className="flex items-center text-2xl lg:text-3xl font-bold text-primary-500 hover:text-primary-400 transition-all duration-300 transform hover:scale-105"
           >
-            {navigation.brand}
+            <img 
+              src="/portfolio/logo.svg" 
+              alt="Poiure Logo" 
+              className="w-8 h-8 lg:w-10 lg:h-10"
+            />
+            <span>{navigation.brand}</span>
           </Link>
           
           {/* Desktop Navigation */}

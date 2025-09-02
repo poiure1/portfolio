@@ -1,27 +1,30 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Github, ExternalLink, Filter } from 'lucide-react'
-import portfolioData from '../data/portfolioData.json'
-import Button from '../components/Button'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Github, ExternalLink, Filter } from "lucide-react";
+import portfolioData from "../data/portfolioData.json";
+import Button from "../components/Button";
 
 const Projects = () => {
-  const [activeFilter, setActiveFilter] = useState('All')
-  const { projects } = portfolioData
+  const [activeFilter, setActiveFilter] = useState("All");
+  const { projects, sections } = portfolioData;
 
   // Dynamically generate categories from projects (flatten all categories)
-  const allCategories = projects.flatMap(project => project.categories || [project.category])
-  const projectCategories = [...new Set(allCategories)]
-  const categories = ['All', ...projectCategories]
+  const allCategories = projects.flatMap(
+    (project) => project.categories || [project.category]
+  );
+  const projectCategories = [...new Set(allCategories)];
+  const categories = ["All", ...projectCategories];
 
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter(project => {
-        // Check if project has the category in either categories array or single category
-        if (project.categories) {
-          return project.categories.includes(activeFilter)
-        }
-        return project.category === activeFilter
-      })
+  const filteredProjects =
+    activeFilter === "All"
+      ? projects
+      : projects.filter((project) => {
+          // Check if project has the category in either categories array or single category
+          if (project.categories) {
+            return project.categories.includes(activeFilter);
+          }
+          return project.category === activeFilter;
+        });
 
   return (
     <div>
@@ -40,23 +43,24 @@ const Projects = () => {
           {/* Modern Filter Buttons */}
           <div className="flex flex-wrap justify-center gap-2 mb-16 p-2 bg-gray-50 rounded-2xl max-w-fit mx-auto">
             {categories.map((category) => {
-              const count = category === 'All' 
-                ? projects.length 
-                : projects.filter(p => {
-                    if (p.categories) {
-                      return p.categories.includes(category)
-                    }
-                    return p.category === category
-                  }).length
-              
+              const count =
+                category === "All"
+                  ? projects.length
+                  : projects.filter((p) => {
+                      if (p.categories) {
+                        return p.categories.includes(category);
+                      }
+                      return p.category === category;
+                    }).length;
+
               return (
                 <button
                   key={category}
                   onClick={() => setActiveFilter(category)}
                   className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm ${
                     activeFilter === category
-                      ? 'bg-white text-primary-600 shadow-sm'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-white/50'
+                      ? "bg-white text-primary-600 shadow-sm"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-white/50"
                   }`}
                 >
                   {category}
@@ -66,12 +70,10 @@ const Projects = () => {
                     </span>
                   )}
                   {activeFilter !== category && (
-                    <span className="ml-1 text-xs opacity-60">
-                      {count}
-                    </span>
+                    <span className="ml-1 text-xs opacity-60">{count}</span>
                   )}
                 </button>
-              )
+              );
             })}
           </div>
 
@@ -86,29 +88,36 @@ const Projects = () => {
               >
                 {/* Project Image */}
                 <div className="relative overflow-hidden aspect-[4/3]">
-                  <img 
-                    src={project.image} 
+                  <img
+                    src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     onError={(e) => {
-                      e.target.src = `https://via.placeholder.com/400x300/6366f1/ffffff?text=${encodeURIComponent(project.title)}`;
+                      e.target.src = `https://via.placeholder.com/400x300/6366f1/ffffff?text=${encodeURIComponent(
+                        project.title
+                      )}`;
                     }}
                   />
-                  
+
                   {/* Category Badge */}
                   <div className="absolute top-3 left-3">
                     <div className="flex gap-1">
-                      {(project.categories || [project.category]).slice(0, 2).map((cat, index) => (
-                        <span 
-                          key={index}
-                          className="bg-white/95 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-xs font-medium shadow-sm"
-                        >
-                          {cat}
-                        </span>
-                      ))}
-                      {(project.categories || [project.category]).length > 2 && (
+                      {(project.categories || [project.category])
+                        .slice(0, 2)
+                        .map((cat, index) => (
+                          <span
+                            key={index}
+                            className="bg-white/95 backdrop-blur-sm text-gray-700 px-3 py-1 rounded-full text-xs font-medium shadow-sm"
+                          >
+                            {cat}
+                          </span>
+                        ))}
+                      {(project.categories || [project.category]).length >
+                        2 && (
                         <span className="bg-white/95 backdrop-blur-sm text-gray-700 px-2 py-1 rounded-full text-xs font-medium shadow-sm">
-                          +{(project.categories || [project.category]).length - 2}
+                          +
+                          {(project.categories || [project.category]).length -
+                            2}
                         </span>
                       )}
                     </div>
@@ -118,7 +127,7 @@ const Projects = () => {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                     <div className="flex gap-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                       {project.github && (
-                        <a 
+                        <a
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -131,7 +140,7 @@ const Projects = () => {
                         </a>
                       )}
                       {project.demo && (
-                        <a 
+                        <a
                           href={project.demo}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -152,17 +161,17 @@ const Projects = () => {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-200">
                     {project.title}
                   </h3>
-                  
+
                   {project.description && (
                     <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
                       {project.description}
                     </p>
                   )}
-                  
+
                   {/* Tech Stack Tags */}
                   <div className="flex flex-wrap gap-1.5">
                     {project.tags.slice(0, 3).map((tag) => (
-                      <span 
+                      <span
                         key={tag}
                         className="bg-gray-50 text-gray-600 px-2.5 py-1 rounded-md text-xs font-medium hover:bg-primary-50 hover:text-primary-600 transition-colors duration-200 border border-gray-100"
                       >
@@ -191,10 +200,11 @@ const Projects = () => {
                   No projects found
                 </h3>
                 <p className="text-gray-500 text-lg">
-                  No projects match the selected category "{activeFilter}". Try selecting a different filter.
+                  No projects match the selected category "{activeFilter}". Try
+                  selecting a different filter.
                 </p>
                 <button
-                  onClick={() => setActiveFilter('All')}
+                  onClick={() => setActiveFilter("All")}
                   className="mt-6 px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors duration-300 font-medium"
                 >
                   Show All Projects
@@ -209,22 +219,18 @@ const Projects = () => {
       <section className="py-20 md:py-28 lg:py-32 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Interested in Working Together?
+            {sections.cta.title}
           </h2>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            I'm always excited to take on new challenges and collaborate on interesting projects.
+            {sections.cta.subtitle}
           </p>
-          <Button 
-            to="/portfolio/contact" 
-            variant="primary" 
-            size="md"
-          >
-            Let's Talk
+          <Button to="/portfolio/contact" variant="primary" size="md">
+            {sections.cta.buttonText}
           </Button>
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;
