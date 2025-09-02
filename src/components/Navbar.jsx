@@ -6,18 +6,35 @@ import portfolioData from '../data/portfolioData.json'
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [visible, setVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
   const location = useLocation()
   const { navigation } = portfolioData
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10
-      setScrolled(isScrolled)
+      const currentScrollY = window.scrollY
+
+      // Set scrolled state for background changes
+      setScrolled(currentScrollY > 10)
+
+      // Show/hide navbar based on scroll direction
+      if (currentScrollY < lastScrollY || currentScrollY < 10) {
+        // Scrolling up or at top - show navbar
+        setVisible(true)
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down and past 100px - hide navbar
+        setVisible(false)
+        // Close mobile menu when hiding navbar
+        setIsOpen(false)
+      }
+
+      setLastScrollY(currentScrollY)
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [lastScrollY])
 
   useEffect(() => {
     setIsOpen(false) // Close mobile menu on route change
@@ -34,7 +51,9 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out transform ${
+        visible ? 'translate-y-0' : '-translate-y-full'
+      } ${
         scrolled 
           ? 'bg-white/95 backdrop-blur-md shadow-lg' 
           : 'bg-white/90 backdrop-blur-sm'
@@ -46,7 +65,7 @@ const Navbar = () => {
           <Link 
             to="/portfolio/" 
             onClick={handleLogoClick}
-            className="flex items-center text-2xl lg:text-3xl font-bold text-primary-500 hover:text-primary-400 transition-all duration-300 transform hover:scale-105"
+            className="flex items-center space-x-2 text-2xl lg:text-3xl font-bold text-primary-500 hover:text-primary-400 transition-all duration-300 transform hover:scale-105"
           >
             <img 
               src="/portfolio/logo.svg" 
