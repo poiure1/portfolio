@@ -31,10 +31,18 @@ const ProjectDetail = () => {
   // Add hover effects and sliding functionality to pagination bullets
   useEffect(() => {
     const addInteractiveEffects = () => {
-      const bullets = document.querySelectorAll('.pagination-bullet')
       const paginationContainer = document.querySelector('.swiper-pagination')
       
-      bullets.forEach((bullet) => {
+      // Clear any existing event listeners by replacing bullets with clones
+      const existingBullets = document.querySelectorAll('.pagination-bullet')
+      existingBullets.forEach(bullet => {
+        bullet.replaceWith(bullet.cloneNode(true))
+      })
+      
+      // Re-select after cloning to remove old listeners
+      const cleanBullets = document.querySelectorAll('.pagination-bullet')
+      
+      cleanBullets.forEach((bullet) => {
         // Hover effects
         bullet.addEventListener('mouseenter', () => {
           bullet.style.opacity = '1'
@@ -88,7 +96,7 @@ const ProjectDetail = () => {
     // Add effects after ensuring Swiper is initialized
     const timer = setTimeout(addInteractiveEffects, 200)
     return () => clearTimeout(timer)
-  }, [projectImages, paginationConfig])
+  }, [project.id, projectImages, paginationConfig]) // Added project.id as dependency
   
   if (!project) {
     return (
@@ -177,6 +185,7 @@ const ProjectDetail = () => {
               <div className="rounded-2xl overflow-hidden shadow-lg max-w-4xl w-full">
                 <div className="relative aspect-[16/9] sm:aspect-[4/3] md:aspect-[16/10] lg:aspect-[3/2] overflow-hidden bg-gray-100">
                   <Swiper
+                    key={project.id} // Force recreation when project changes
                     modules={[Navigation, Pagination, Autoplay]}
                     spaceBetween={0}
                     slidesPerView={1}
@@ -236,6 +245,18 @@ const ProjectDetail = () => {
                       </SwiperSlide>
                     ))}
                   </Swiper>
+                  
+                  Custom Navigation Arrows
+                  {projectImages.length > 1 && (
+                    <>
+                      <button className="swiper-button-prev-custom absolute left-2 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/30 text-white p-1.5 rounded-full transition-all duration-300 opacity-60 hover:opacity-100 z-10">
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button className="swiper-button-next-custom absolute right-2 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/30 text-white p-1.5 rounded-full transition-all duration-300 opacity-60 hover:opacity-100 z-10">
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
