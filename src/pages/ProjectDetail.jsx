@@ -236,18 +236,6 @@ const ProjectDetail = () => {
                       </SwiperSlide>
                     ))}
                   </Swiper>
-                  
-                  {/* Custom Navigation Arrows */}
-                  {projectImages.length > 1 && (
-                    <>
-                      <button className="swiper-button-prev-custom absolute left-2 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/30 text-white p-1.5 rounded-full transition-all duration-300 opacity-60 hover:opacity-100 z-10">
-                        <ChevronLeft className="w-5 h-5" />
-                      </button>
-                      <button className="swiper-button-next-custom absolute right-2 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/30 text-white p-1.5 rounded-full transition-all duration-300 opacity-60 hover:opacity-100 z-10">
-                        <ChevronRight className="w-5 h-5" />
-                      </button>
-                    </>
-                  )}
                 </div>
               </div>
             </div>
