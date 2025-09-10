@@ -1,6 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Github, ExternalLink, ArrowLeft, Calendar, Tag, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination, Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 import portfolioData from '../data/portfolioData.json'
 import Button from '../components/Button'
 import AnimatedSection from '../components/AnimatedSection'
@@ -8,24 +13,82 @@ import AnimatedSection from '../components/AnimatedSection'
 const ProjectDetail = () => {
   const { id } = useParams()
   const { projects } = portfolioData
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   
   const project = projects.find(p => p.id === parseInt(id))
   
   // Handle multiple images - fallback to single image if images array doesn't exist
   const projectImages = project?.images || [project?.image].filter(Boolean)
   
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === projectImages.length - 1 ? 0 : prev + 1
-    )
-  }
+  // Calculate pagination layout based on number of images
+  const paginationConfig = useMemo(() => ({
+    maxVisibleBullets: Math.min(projectImages.length, 5), // Limit visible bullets
+    bulletSize: projectImages.length > 8 ? 36 : 48,
+    bulletHeight: projectImages.length > 8 ? 24 : 32,
+    containerMaxWidth: Math.min(projectImages.length * 56, 400),
+    showScrollHint: projectImages.length > 5 // Show scroll indicators
+  }), [projectImages.length])
   
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === 0 ? projectImages.length - 1 : prev - 1
-    )
-  }
+  // Add hover effects and sliding functionality to pagination bullets
+  useEffect(() => {
+    const addInteractiveEffects = () => {
+      const bullets = document.querySelectorAll('.pagination-bullet')
+      const paginationContainer = document.querySelector('.swiper-pagination')
+      
+      bullets.forEach((bullet) => {
+        // Hover effects
+        bullet.addEventListener('mouseenter', () => {
+          bullet.style.opacity = '1'
+          bullet.style.borderColor = 'rgba(255,255,255,0.5)'
+          bullet.style.transform = 'scale(1.05)'
+        })
+        
+        bullet.addEventListener('mouseleave', () => {
+          if (!bullet.classList.contains('swiper-pagination-bullet-active')) {
+            bullet.style.opacity = '0.7'
+            bullet.style.borderColor = 'transparent'
+            bullet.style.transform = 'scale(1)'
+          }
+        })
+        
+        // Click to scroll bullet into view
+        bullet.addEventListener('click', () => {
+          if (paginationContainer && projectImages.length > paginationConfig.maxVisibleBullets) {
+            const containerRect = paginationContainer.getBoundingClientRect()
+            const scrollLeft = bullet.offsetLeft - (containerRect.width / 2) + (bullet.offsetWidth / 2)
+            
+            paginationContainer.scrollTo({
+              left: scrollLeft,
+              behavior: 'smooth'
+            })
+          }
+        })
+      })
+      
+      // Add wheel scrolling support
+      if (paginationContainer && projectImages.length > paginationConfig.maxVisibleBullets) {
+        paginationContainer.addEventListener('wheel', (e) => {
+          e.preventDefault()
+          paginationContainer.scrollLeft += e.deltaY > 0 ? 50 : -50
+        })
+        
+        // Add touch scrolling indicators
+        let isScrolling = false
+        paginationContainer.addEventListener('scroll', () => {
+          isScrolling = true
+          paginationContainer.style.boxShadow = '0 0 20px rgba(255,255,255,0.1)'
+          
+          clearTimeout(isScrolling)
+          isScrolling = setTimeout(() => {
+            paginationContainer.style.boxShadow = 'none'
+          }, 150)
+        })
+      }
+    }
+    
+    // Add effects after ensuring Swiper is initialized
+    const timer = setTimeout(addInteractiveEffects, 200)
+    return () => clearTimeout(timer)
+  }, [projectImages, paginationConfig])
   
   if (!project) {
     return (
@@ -111,55 +174,81 @@ const ProjectDetail = () => {
         <div className="max-w-6xl mx-auto px-6 md:px-8">
           <AnimatedSection animation="scaleIn" delay={200}>
             <div className="flex justify-center">
-              <div className="rounded-2xl overflow-hidden shadow-lg max-w-4xl w-full relative">
-                <div className="relative aspect-[16/9] sm:aspect-[4/3] md:aspect-[16/10] lg:aspect-[3/2]">
-                  <img 
-                    src={projectImages[currentImageIndex]} 
-                    alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                    className="w-auto h-full object-cover mx-auto"
-                    onError={(e) => {
-                      e.target.src = `https://via.placeholder.com/1200x600/6366f1/ffffff?text=${encodeURIComponent(project.title)}`;
+              <div className="rounded-2xl overflow-hidden shadow-lg max-w-4xl w-full">
+                <div className="relative aspect-[16/9] sm:aspect-[4/3] md:aspect-[16/10] lg:aspect-[3/2] overflow-hidden bg-gray-100">
+                  <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    spaceBetween={0}
+                    slidesPerView={1}
+                    navigation={{
+                      prevEl: '.swiper-button-prev-custom',
+                      nextEl: '.swiper-button-next-custom',
                     }}
-                  />
+                    pagination={{
+                      clickable: true,
+                      dynamicBullets: projectImages.length > 5,
+                      dynamicMainBullets: 3,
+                      renderBullet: (index, className) => {
+                        const image = projectImages[index];
+                        const { bulletSize, bulletHeight } = paginationConfig;
+                        return `<div class="${className} pagination-bullet" style="
+                          width: ${bulletSize}px;
+                          height: ${bulletHeight}px;
+                          border-radius: 6px;
+                          background-image: url('${image}');
+                          background-size: cover;
+                          background-position: center;
+                          background-repeat: no-repeat;
+                          opacity: 0.7;
+                          cursor: pointer;
+                          border: 2px solid transparent;
+                          transition: all 0.3s ease;
+                          margin: 0 ${projectImages.length > 8 ? 2 : 4}px;
+                          display: inline-block;
+                          flex-shrink: 0;
+                        "></div>`;
+                      },
+                    }}
+                    autoplay={{
+                      delay: 5000,
+                      disableOnInteraction: false,
+                      pauseOnMouseEnter: true,
+                    }}
+                    loop={projectImages.length > 1}
+                    className={`w-full h-full swiper-with-custom-pagination ${
+                      projectImages.length > 8 ? 'many-images' : 
+                      projectImages.length > 5 ? 'moderate-images' : 
+                      'few-images'
+                    }`}
+                  >
+                    {projectImages.map((image, index) => (
+                      <SwiperSlide key={index}>
+                        <div className="w-full h-full bg-gray-50 flex items-center justify-center">
+                          <img 
+                            src={image} 
+                            alt={`${project.title} - Image ${index + 1}`}
+                            className="max-w-full max-h-full object-contain"
+                            onError={(e) => {
+                              e.target.src = `https://via.placeholder.com/1200x600/6366f1/ffffff?text=${encodeURIComponent(project.title)}`;
+                            }}
+                          />
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
                   
-                  {/* Navigation arrows - only show if more than 1 image */}
+                  {/* Custom Navigation Arrows */}
                   {projectImages.length > 1 && (
                     <>
-                      <button
-                        onClick={prevImage}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 hover:scale-110"
-                        aria-label="Previous image"
-                      >
+                      <button className="swiper-button-prev-custom absolute left-2 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/30 text-white p-1.5 rounded-full transition-all duration-300 opacity-60 hover:opacity-100 z-10">
                         <ChevronLeft className="w-5 h-5" />
                       </button>
-                      <button
-                        onClick={nextImage}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-200 hover:scale-110"
-                        aria-label="Next image"
-                      >
+                      <button className="swiper-button-next-custom absolute right-2 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/30 text-white p-1.5 rounded-full transition-all duration-300 opacity-60 hover:opacity-100 z-10">
                         <ChevronRight className="w-5 h-5" />
                       </button>
                     </>
                   )}
                 </div>
-                
-                {/* Image indicators - only show if more than 1 image */}
-                {projectImages.length > 1 && (
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                    {projectImages.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentImageIndex(index)}
-                        className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                          index === currentImageIndex 
-                            ? 'bg-white scale-125' 
-                            : 'bg-white/50 hover:bg-white/80'
-                        }`}
-                        aria-label={`Go to image ${index + 1}`}
-                      />
-                    ))}
-                  </div>
-                )}
               </div>
             </div>
           </AnimatedSection>
@@ -187,8 +276,6 @@ const ProjectDetail = () => {
                 ))}
               </div>
             </AnimatedSection>
-
-            
           </div>
         </div>
       </section>

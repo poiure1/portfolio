@@ -285,3 +285,197 @@ li {
   .lg\:spacing-2xl { padding: 4rem; margin: 2rem; }
   .lg\:spacing-3xl { padding: 5rem; margin: 2.5rem; }
 }
+
+/* Swiper Custom Pagination Styles */
+.swiper-with-custom-pagination .swiper-pagination {
+  position: absolute !important;
+  bottom: 12px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(4px) !important;
+  border-radius: 8px !important;
+  padding: 8px !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: 90vw !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  scroll-behavior: smooth !important;
+  cursor: grab !important;
+}
+
+.swiper-with-custom-pagination .swiper-pagination:active {
+  cursor: grabbing !important;
+}
+
+.swiper-with-custom-pagination .swiper-pagination::-webkit-scrollbar {
+  display: none !important;
+}
+
+.swiper-with-custom-pagination .pagination-bullet:hover {
+  opacity: 1 !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: scale(1.05) !important;
+}
+
+.swiper-with-custom-pagination .swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  border-color: white !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Limited preview containers */
+.swiper-with-custom-pagination.few-images .swiper-pagination {
+  justify-content: center !important;
+  max-width: 70vw !important;
+}
+
+.swiper-with-custom-pagination.moderate-images .swiper-pagination {
+  max-width: 320px !important;
+  justify-content: flex-start !important;
+}
+
+.swiper-with-custom-pagination.many-images .swiper-pagination {
+  max-width: 280px !important;
+  justify-content: flex-start !important;
+}
+
+/* Scroll indicators for slideable pagination */
+.swiper-with-custom-pagination.moderate-images .swiper-pagination::before,
+.swiper-with-custom-pagination.many-images .swiper-pagination::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 15px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
+  border-radius: 8px 0 0 8px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.swiper-with-custom-pagination.moderate-images .swiper-pagination::after,
+.swiper-with-custom-pagination.many-images .swiper-pagination::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 15px;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent);
+  border-radius: 0 8px 8px 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.swiper-with-custom-pagination.moderate-images .swiper-pagination:hover::before,
+.swiper-with-custom-pagination.moderate-images .swiper-pagination:hover::after,
+.swiper-with-custom-pagination.many-images .swiper-pagination:hover::before,
+.swiper-with-custom-pagination.many-images .swiper-pagination:hover::after {
+  opacity: 1;
+}
+
+/* Smooth bullet transitions */
+.pagination-bullet {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  will-change: transform, opacity, border-color !important;
+}
+
+/* Bullet sizing for different image counts */
+.swiper-with-custom-pagination.many-images .swiper-pagination-bullet {
+  width: 36px !important;
+  height: 24px !important;
+  margin: 0 2px !important;
+  flex-shrink: 0 !important;
+}
+
+.swiper-with-custom-pagination.moderate-images .swiper-pagination-bullet {
+  width: 42px !important;
+  height: 28px !important;
+  margin: 0 3px !important;
+  flex-shrink: 0 !important;
+}
+
+.swiper-with-custom-pagination.few-images .swiper-pagination-bullet {
+  width: 48px !important;
+  height: 32px !important;
+  margin: 0 4px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .swiper-with-custom-pagination .swiper-pagination {
+    max-width: 95vw !important;
+    padding: 6px !important;
+    bottom: 8px !important;
+  }
+  
+  .swiper-with-custom-pagination.many-images .swiper-pagination {
+    max-width: 90vw !important;
+  }
+  
+  .swiper-with-custom-pagination.moderate-images .swiper-pagination {
+    max-width: 85vw !important;
+  }
+  
+  .swiper-with-custom-pagination.many-images .swiper-pagination-bullet {
+    width: 32px !important;
+    height: 20px !important;
+    margin: 0 1px !important;
+  }
+  
+  .swiper-with-custom-pagination.moderate-images .swiper-pagination-bullet {
+    width: 36px !important;
+    height: 24px !important;
+    margin: 0 2px !important;
+  }
+  
+  .swiper-with-custom-pagination.few-images .swiper-pagination-bullet {
+    width: 40px !important;
+    height: 26px !important;
+    margin: 0 2px !important;
+  }
+}
+
+/* Scroll hint animation */
+@keyframes scrollHint {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+.swiper-with-custom-pagination.moderate-images .swiper-pagination:not(:hover),
+.swiper-with-custom-pagination.many-images .swiper-pagination:not(:hover) {
+  animation: scrollHint 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Active bullet auto-scroll indicator */
+.swiper-pagination-bullet-active.pagination-bullet {
+  position: relative;
+}
+
+.swiper-pagination-bullet-active.pagination-bullet::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 2px;
+  background: white;
+  border-radius: 1px;
+  opacity: 0.8;
+}
